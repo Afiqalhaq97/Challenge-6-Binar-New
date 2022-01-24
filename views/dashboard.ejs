@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/styledashboard.css">
+</head>
+
+<body>
+  <% if (status === "added") { %>
+    <%- include('partials/added.ejs') %>
+  <% } %>
+
+  <% if (status === "deleted") { %>
+    <%- include('partials/deleted.ejs') %>
+  <% } %>
+
+  <% if (status === "edited") { %>
+    <%- include('partials/edited.ejs') %>
+  <% } %>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Wins</th>
+        <th scope="col">Losses</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (credential.length > 0) { %>
+        <% for (i = 0; i < credential.length; i++) { %>
+          <tr>
+            <th scope="row"><%= i+1 %> </th>
+            <td><%= credential[i].email %></td>
+            <td><%= credential[i].password %></td>
+            <td><%= biodata[i].name %> </td>
+            <td><%= biodata[i].age %> </td>
+            <td><%= history[i].wins %> </td>
+            <td><%= history[i].losses %> </td>
+            <td class="d-flex">
+              <form action="/admin/edit-data" method="GET">
+                <input type="hidden" value="<%= credential[i].id %>" name="id">
+                <button class="btn edit btn-light" type="submit">EDIT</button>
+              </form>
+              <form action="/admin/delete-data" method="POST">
+                <input type="hidden" value="<%= credential[i].id %>" name="id">
+                <button class="btn delete btn-light" type="submit">DELETE</button>
+              </form>
+            </td>
+          </tr>
+        <% } %>
+    </tbody>
+  </table>
+  <% } else { %>
+  </table>
+  <h1>NO DATA FOUND!</h1>
+  <% } %>
+  <form action="/admin/add-data" method="GET">
+    <div class="button-holder">
+      <button type="button submit" class="btn add btn-light">ADD DATA +</button>
+    </div>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

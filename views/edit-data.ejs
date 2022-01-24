@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style-add-edit.css">
+</head>
+<body>
+    <% if (status === "fail") { %>
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            Oops! <strong><%= error %> </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %> 
+        <h1 class="text-center mt-5">EDIT DATA</h1>
+        <form action="/admin/edit-data" class="mt-5" method="POST">
+            <div class="form-group row">
+                <div class="mb-3 col-12">
+                    <label for="email" class="form-label">Email address</label>
+                    <input name="email" value="<%= userCred.email %>" type="email" class="form-control" id="email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="mb-3 col-12">
+                    <label for="password" class="form-label">Password</label>
+                    <input name="password" value="<%= userCred.password %>" type="text" class="form-control" id="password">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="mb-3 col-9">
+                    <label for="name" class="form-label">Name</label>
+                    <input name="name" value="<%= userBio.name %>" type="text" class="form-control" id="name">
+                </div>
+                <div class="mb-3 col-3">
+                    <label for="age" class="form-label">Age</label>
+                    <input name="age" value="<%= userBio.age %>" type="number" class="form-control" id="age">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="mb-3 wins col-6">
+                    <label for="wins" class="form-label">Wins</label>
+                    <input name="wins" value="<%= userHistory.wins %>" type="number" class="form-control" id="wins">
+                </div>
+                <div class="mb-3 losses col-6">
+                    <label for="losses" class="form-label">Losses</label>
+                    <input name="losses" value="<%= userHistory.losses %>" type="number" class="form-control" id="losses">
+                </div>
+            </div>
+            <input type="hidden" name="id" value="<%= userCred.id %> ">
+            <div class="button-holder">
+                <button type="submit" class="btn btn-light add">EDIT</button>
+            </div>
+        </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+</body>
+</html>

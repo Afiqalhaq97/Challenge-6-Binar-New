@@ -1,0 +1,31 @@
+.button-holder {
+    text-align:center;
+}
+
+.edit {
+    background: rgba(66, 117, 255, 1);
+    color: white;
+}
+
+.edit:hover {
+    background: rgba(66, 117, 255, 0.5);
+}
+
+.delete {
+    background: rgba(255, 66, 66, 1);
+    color: white;
+}
+
+.delete:hover {
+    background: rgba(255, 66, 66, 0.5);
+}
+
+.add {
+    background: rgba(5, 225, 5, 1);
+    color: white;
+}
+
+.add:hover {
+    background: rgba(5, 225, 5, 0.5);
+    
+}
